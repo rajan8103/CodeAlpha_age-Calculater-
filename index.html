@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Age Calculator - Calculate Your Age Precisely</title>
+    <meta
+      name="description"
+      content="Calculate your exact age in years, months, and days with our responsive age calculator"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.css"
+    />
+  </head>
+  <body>
+    <div class="app-container">
+      <!-- Theme Toggle Button -->
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <i data-feather="sun" class="theme-icon sun-icon"></i>
+        <i data-feather="moon" class="theme-icon moon-icon"></i>
+      </button>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <div class="calculator-wrapper">
+          <div class="header-section">
+            <h1 class="app-title">Age Calculator</h1>
+            <p class="app-description">
+              Calculate your exact age in years, months, and days
+            </p>
+          </div>
+
+          <div class="calculator-card">
+            <form class="date-form" id="ageForm">
+              <div class="form-section">
+                <h2 class="section-title">Enter Your Date of Birth</h2>
+
+                <div class="input-grid">
+                  <div class="input-group">
+                    <label for="dayInput" class="input-label">Day</label>
+                    <input
+                      type="number"
+                      id="dayInput"
+                      class="date-input"
+                      placeholder="DD"
+                      min="1"
+                      max="31"
+                      required
+                    />
+                    <span class="error-message" id="dayError"></span>
+                  </div>
+
+                  <div class="input-group">
+                    <label for="monthInput" class="input-label">Month</label>
+                    <select
+                      id="monthInput"
+                      class="date-input month-select"
+                      required
+                    >
+                      <option value="">Select Month</option>
+                      <option value="1">January</option>
+                      <option value="2">February</option>
+                      <option value="3">March</option>
+                      <option value="4">April</option>
+                      <option value="5">May</option>
+                      <option value="6">June</option>
+                      <option value="7">July</option>
+                      <option value="8">August</option>
+                      <option value="9">September</option>
+                      <option value="10">October</option>
+                      <option value="11">November</option>
+                      <option value="12">December</option>
+                    </select>
+                    <span class="error-message" id="monthError"></span>
+                  </div>
+
+                  <div class="input-group">
+                    <label for="yearInput" class="input-label">Year</label>
+                    <input
+                      type="number"
+                      id="yearInput"
+                      class="date-input"
+                      placeholder="YYYY"
+                      min="1900"
+                      max="2025"
+                      required
+                    />
+                    <span class="error-message" id="yearError"></span>
+                  </div>
+                </div>
+
+                <div class="form-error" id="formError"></div>
+              </div>
+
+              <div class="button-group">
+                <button type="submit" class="calculate-btn" id="calculateBtn">
+                  <i data-feather="calendar"></i>
+                  <span>Calculate My Age</span>
+                </button>
+
+                <div
+                  class="action-buttons"
+                  id="actionButtons"
+                  style="display: none"
+                >
+                  <button type="button" class="save-btn" id="saveBtn">
+                    <i data-feather="bookmark"></i>
+                    <span>Save Result</span>
+                  </button>
+                  <button type="button" class="clear-btn" id="clearBtn">
+                    <i data-feather="refresh-cw"></i>
+                    <span>Clear Fields</span>
+                  </button>
+                </div>
+              </div>
+            </form>
+
+            <!-- Results Section -->
+            <div class="results-section" id="resultsSection">
+              <h3 class="results-title">Your Age</h3>
+              <div class="age-display">
+                <div class="age-item">
+                  <span class="age-number" id="yearsDisplay">0</span>
+                  <span class="age-label">Years</span>
+                </div>
+                <div class="age-item">
+                  <span class="age-number" id="monthsDisplay">0</span>
+                  <span class="age-label">Months</span>
+                </div>
+                <div class="age-item">
+                  <span class="age-number" id="daysDisplay">0</span>
+                  <span class="age-label">Days</span>
+                </div>
+              </div>
+
+              <div class="additional-info" id="additionalInfo">
+                <div class="info-grid">
+                  <div class="info-item">
+                    <span class="info-label">Total Days Lived:</span>
+                    <span class="info-value" id="totalDays">0</span>
+                  </div>
+                  <div class="info-item">
+                    <span class="info-label">Next Birthday:</span>
+                    <span class="info-value" id="nextBirthday">-</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- History Section -->
+          <div class="history-section" id="historySection">
+            <div class="history-header">
+              <h3 class="history-title">
+                <i data-feather="clock"></i>
+                <span>Calculation History</span>
+              </h3>
+              <button class="clear-all-btn" id="clearAllBtn">
+                <i data-feather="trash-2"></i>
+                <span>Clear All</span>
+              </button>
+            </div>
+            <div class="history-list" id="historyList">
+              <div class="no-history" id="noHistory">
+                <i data-feather="calendar"></i>
+                <p>No saved calculations yet</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <!-- Footer -->
+      <footer class="app-footer">
+        <p>&copy; 2025 Age Calculator. Calculate your age with precision.</p>
+      </footer>
+    </div>
+
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
